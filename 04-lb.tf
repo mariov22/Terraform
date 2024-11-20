@@ -28,3 +28,12 @@ resource "openstack_lb_member_v2" "http" {
     subnet_id = openstack_networking_subnet_v2.Subnet_1.id
     depends_on = [openstack_lb_pool_v2.http]
 }
+
+resource "openstack_networking_floatingip_v2" "lb-fip" {
+  pool = data.openstack_networking_network_v2.extnet.name
+}
+
+resource "openstack_compute_floatingip_associate_v2" "lb-fip-assoc" {
+  floating_ip = openstack_networking_floatingip_v2.lb-fip.address
+  port_id = openstack_lb_loadbalancer_v2.http.vip_port_id
+}

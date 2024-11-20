@@ -24,8 +24,6 @@ resource "openstack_networking_floatingip_v2" "admin-fip" {
   pool = data.openstack_networking_network_v2.extnet.name
 }
 
-
-
 resource "openstack_compute_floatingip_associate_v2" "admin-fip-assoc" {
   floating_ip = openstack_networking_floatingip_v2.admin-fip.address
   instance_id = openstack_compute_instance_v2.admin.id

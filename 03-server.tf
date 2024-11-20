@@ -1,7 +1,7 @@
 
 resource "openstack_compute_instance_v2" "server" {
   for_each = var.server_names
-  name        = each.key
+  name = each.key
   flavor_name = var.flavor_server    
   image_name  = var.server_image 
   security_groups = [openstack_networking_secgroup_v2.my_security_group.name]    
