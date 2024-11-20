@@ -18,10 +18,10 @@ variable "server_image" {
 
 
 # UUID of the external network
-variable "external_gateway" {
-  type    = string
-  default = "b15d1e87-aefd-4c66-a369-182bc17dbc77"
-}
+# variable "external_gateway" {
+#   type    = string
+#   default = "b15d1e87-aefd-4c66-a369-182bc17dbc77"
+# }
 
 variable "dns_ip" {
   type    = string

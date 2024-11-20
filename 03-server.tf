@@ -24,9 +24,9 @@ resource "openstack_compute_instance_v2" "server" {
         permissions: '0644'
         content: |
           <html>
-          <head><title>Welcome to Server 1</title></head>
+          <head><title>Welcome to Terraform Web Server</title></head>
           <body>
-            <h1>Server 1 - Nginx Web Server</h1>
+            <h1>Terraform Web Server - Nginx Web Server</h1>
             <p>Deployed using Terraform and cloud-init.</p>
           </body>
           </html>
