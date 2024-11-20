@@ -7,11 +7,11 @@ resource "openstack_compute_instance_v2" "server" {
   security_groups = [openstack_networking_secgroup_v2.my_security_group.name]    
 
   network {
-    port = openstack_networking_port_v2.server[each.key]-net1.id
+    uuid = openstack_networking_network_v2.Net_1.id
   }
 
   network {
-    port = openstack_networking_port_v2.server[each.key]-net2.id
+    uuid = openstack_networking_network_v2.Net_2.id
   }
 
   user_data = <<-EOT
@@ -32,9 +32,9 @@ resource "openstack_compute_instance_v2" "server" {
           </html>
 
     runcmd:
+      - apt-get update
       - systemctl start nginx
       - systemctl enable nginx
-        
   EOT
 }
 

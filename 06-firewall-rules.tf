@@ -8,15 +8,15 @@ resource "openstack_fw_rule_v2" "ssh_rule" {
     depends_on             = [openstack_compute_instance_v2.admin]
 }
 
-# resource "openstack_fw_rule_v2" "http_rule" {
-#     name                ="allow_http"
-#     action              = "allow"
-#     protocol            = "tcp"
-#     destination_port    = "80"
-#     source_ip_address   = "0.0.0.0/0"
-#     destination_ip_address = openstack_lb_loadbalancer_v2.http.vip_address
-#     depends_on             = [openstack_lb_loadbalancer_v2.http]
-# }
+resource "openstack_fw_rule_v2" "http_rule" {
+    name                ="allow_http"
+    action              = "allow"
+    protocol            = "tcp"
+    destination_port    = "80"
+    source_ip_address   = "0.0.0.0/0"
+    destination_ip_address = openstack_lb_loadbalancer_v2.http.vip_address
+    depends_on             = [openstack_lb_loadbalancer_v2.http]
+}
 
 
 resource "openstack_fw_rule_v2" "allow_internal" {

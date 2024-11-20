@@ -1,7 +1,0 @@
-#cloud-config
-packages:
-  - nginx
-runcmd:
-  - systemctl start nginx
-  - systemctl enable nginx
-  - echo "Servidor NGINX" > /var/www/html/index.html
