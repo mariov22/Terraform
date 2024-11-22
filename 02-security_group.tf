@@ -24,6 +24,7 @@ resource "openstack_networking_secgroup_rule_v2" "allow_icmp" {
   direction        = "ingress"
   ethertype        = "IPv4"
   protocol         = "icmp"
+  remote_ip_prefix = "0.0.0.0/0"
   security_group_id = openstack_networking_secgroup_v2.my_security_group.id
 }
 
@@ -31,9 +32,22 @@ resource "openstack_networking_secgroup_rule_v2" "allow_icmp_out" {
   direction        = "egress"
   ethertype        = "IPv4"
   protocol         = "icmp"
+  remote_ip_prefix = "0.0.0.0/0"
   security_group_id = openstack_networking_secgroup_v2.my_security_group.id
 }
 
+
+# puerto udp 53 para los paquetes de los servidores
+
+# resource "openstack_networking_secgroup_rule_v2" "allow_udp" {
+#   direction        = "egress"
+#   ethertype        = "IPv4"
+#   protocol         = "udp"
+#   port_range_min   = 53
+#   port_range_max   = 53
+#   remote_ip_prefix = "0.0.0.0/0"
+#   security_group_id = openstack_networking_secgroup_v2.my_security_group.id
+# }
 
 
 
