@@ -1,7 +1,7 @@
 
 resource "openstack_compute_instance_v2" "server" {
   for_each = var.server_names
-  name = each.key
+  name        = each.key
   flavor_name = var.flavor_server    
   image_name  = var.server_image 
   security_groups = [openstack_networking_secgroup_v2.my_security_group.name]    
@@ -10,9 +10,10 @@ resource "openstack_compute_instance_v2" "server" {
     uuid = openstack_networking_network_v2.Net_1.id
   }
 
-  network {
+   network {
     uuid = openstack_networking_network_v2.Net_2.id
   }
+
 
   user_data = <<-EOT
     #cloud-config
@@ -26,7 +27,7 @@ resource "openstack_compute_instance_v2" "server" {
           <html>
           <head><title>Welcome to Terraform Web Server</title></head>
           <body>
-            <h1>Terraform Web Server - Nginx Web Server</h1>
+            <h1>Terraform Web Server - Nginx Web Server ${each.key}</h1>
             <p>Deployed using Terraform and cloud-init.</p>
           </body>
           </html>
@@ -35,6 +36,7 @@ resource "openstack_compute_instance_v2" "server" {
       - apt-get update
       - systemctl start nginx
       - systemctl enable nginx
+        
   EOT
 }
 
