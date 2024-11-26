@@ -56,6 +56,10 @@ variable "Net_2" {
     type = string
 }
 
+variable "Net_3" {
+    description = "Nombre de la red 3"
+    type = string
+}
 #### Servers parameters ####
 
 variable "flavor_server" {

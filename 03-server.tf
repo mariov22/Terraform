@@ -1,4 +1,3 @@
-
 resource "openstack_compute_instance_v2" "server" {
   for_each = var.server_names
   name        = each.key
